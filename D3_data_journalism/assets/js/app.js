@@ -28,8 +28,8 @@ d3.csv("assets/data/data.csv").then(function(hairData) {
     // ==============================
     hairData.forEach(function(data) {
 
-      data.healthcare = +data.healthcare;
-      data.poverty = +data.poverty;
+      data.obesity = +data.obesity;
+      data.income = +data.income;
 
     });
 
@@ -37,11 +37,11 @@ d3.csv("assets/data/data.csv").then(function(hairData) {
     // ==============================
 
   var xLinearScale = d3.scaleLinear()
-    .domain([0, d3.max(hairData, d => d.healthcare) + 5])
+    .domain([0, d3.max(hairData, d => d.obesity) + 5])
     .range([0, width]);
 
   var yLinearScale = d3.scaleLinear()
-    .domain([0, d3.max(hairData, d => d.poverty) + 5])
+    .domain([0, d3.max(hairData, d => d.income) + 5])
     .range([height, 0]);
 
     // Step 3: Create axis functions
@@ -65,10 +65,10 @@ d3.csv("assets/data/data.csv").then(function(hairData) {
     .data(hairData)
     .enter()
     .append("circle")
-    .attr("cx", d => xLinearScale(d.healthcare))
-    .attr("cy", d => yLinearScale(d.poverty))
+    .attr("cx", d => xLinearScale(d.obesity))
+    .attr("cy", d => yLinearScale(d.income))
     .attr("r","15")
-    .attr("fill", "lightblue");
+    .attr("fill", "plum");
 
     //state abbreviations
     var stateGroup = chartGroup.selectAll("text")
@@ -76,8 +76,8 @@ d3.csv("assets/data/data.csv").then(function(hairData) {
     .enter()
     .append("text")
     //need another line for d.abbr
-    .attr("dx", d => xLinearScale(d.healthcare))
-    .attr("dy", d => yLinearScale(d.poverty))
+    .attr("dx", d => xLinearScale(d.obesity))
+    .attr("dy", d => yLinearScale(d.income))
     ;
 
     // Step 6: Initialize tool tip
@@ -86,7 +86,7 @@ d3.csv("assets/data/data.csv").then(function(hairData) {
     .attr("class", "tooltip")
     .offset([80, -60])
     .html(function(d) {
-      return (`<strong>${d.state}<strong><hr>Healthcare: ${d.healthcare}<br>Poverty: ${d.poverty}`);
+      return (`<strong>${d.state}<strong><hr>Obesity: ${d.obesity}<br>Income: ${d.income}`);
     });
 
     // Step 7: Create tooltip in the chart
@@ -99,9 +99,11 @@ d3.csv("assets/data/data.csv").then(function(hairData) {
       circlesGroup.on("mouseover", function(d) {
         toolTip.show(d, this);
       })
+        //on mouseout event
         .on("mouseout", function(d) {
           toolTip.hide(d);
         });
+
     // Create axes labels
     chartGroup.append("text")
       .attr("transform", "rotate(-90)")
@@ -109,12 +111,12 @@ d3.csv("assets/data/data.csv").then(function(hairData) {
       .attr("x", 0 - (height / 2))
       .attr("dy", "1em")
       .attr("class", "axisText")
-      .text("Poverty");
+      .text("Income");
 
     chartGroup.append("text")
       .attr("transform", `translate(${width / 2}, ${height + margin.top + 30})`)
       .attr("class", "axisText")
-      .text("Healthcare");
+      .text("Obesity");
   }).catch(function(error) {
     console.log(error);
   });
