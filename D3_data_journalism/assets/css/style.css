@@ -50,3 +50,7 @@ body {
   fill: blueviolet;
   text-anchor: middle;
 }
+
+.states {
+  text-align: center;
+}

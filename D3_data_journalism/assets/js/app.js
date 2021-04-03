@@ -71,11 +71,14 @@ d3.csv("assets/data/data.csv").then(function(hairData) {
     .attr("fill", "plum");
 
     //state abbreviations
-    var stateGroup = chartGroup.selectAll("text")
+    var stateGroup = chartGroup.selectAll("text.states")
     .data(hairData)
     .enter()
-    .append("text")
+    .append("text.states")
     //need another line for d.abbr
+    .text(d => d.abbr)
+    //create class attribute .states with centered text etc.
+    .attr("class","states")
     .attr("dx", d => xLinearScale(d.obesity))
     .attr("dy", d => yLinearScale(d.income))
     ;
