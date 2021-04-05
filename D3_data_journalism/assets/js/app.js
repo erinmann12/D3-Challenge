@@ -71,6 +71,7 @@ d3.csv("assets/data/data.csv").then(function(censusData) {
     .attr("fill", "plum");
 
     //state abbreviations
+    // use selectAll(null) so that the enter selection to avoid binding data that already exists
     var stateGroup = chartGroup.selectAll("null")
     .data(censusData)
     .enter()
