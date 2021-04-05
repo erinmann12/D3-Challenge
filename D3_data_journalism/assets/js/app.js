@@ -71,7 +71,7 @@ d3.csv("assets/data/data.csv").then(function(censusData) {
     .attr("fill", "plum");
 
     //state abbreviations
-    var stateGroup = chartGroup.selectAll("text")
+    var stateGroup = chartGroup.selectAll("null")
     .data(censusData)
     .enter()
     .append("text")
