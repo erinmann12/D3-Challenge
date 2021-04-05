@@ -22,11 +22,11 @@ var chartGroup = svg.append("g")
   .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
 // Import Data
-d3.csv("assets/data/data.csv").then(function(hairData) {
+d3.csv("assets/data/data.csv").then(function(censusData) {
 
     // Step 1: Parse Data/Cast as numbers
     // ==============================
-    hairData.forEach(function(data) {
+    censusData.forEach(function(data) {
 
       data.obesity = +data.obesity;
       data.income = +data.income;
@@ -37,11 +37,11 @@ d3.csv("assets/data/data.csv").then(function(hairData) {
     // ==============================
 
   var xLinearScale = d3.scaleLinear()
-    .domain([0, d3.max(hairData, d => d.obesity) + 5])
+    .domain([0, d3.max(censusData, d => d.obesity) + 5])
     .range([0, width]);
 
   var yLinearScale = d3.scaleLinear()
-    .domain([0, d3.max(hairData, d => d.income) + 5])
+    .domain([0, d3.max(censusData, d => d.income) + 5])
     .range([height, 0]);
 
     // Step 3: Create axis functions
@@ -62,7 +62,7 @@ d3.csv("assets/data/data.csv").then(function(hairData) {
     // ==============================
 
     var circlesGroup = chartGroup.selectAll("circle")
-    .data(hairData)
+    .data(censusData)
     .enter()
     .append("circle")
     .attr("cx", d => xLinearScale(d.obesity))
@@ -72,7 +72,7 @@ d3.csv("assets/data/data.csv").then(function(hairData) {
 
     //state abbreviations
     var stateGroup = chartGroup.selectAll("text")
-    .data(hairData)
+    .data(censusData)
     .enter()
     .append("text")
     //append text of state abbreviations
