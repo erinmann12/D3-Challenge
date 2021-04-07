@@ -15,7 +15,7 @@ For this project I was tasked with analyzing the current trends shaping people's
 
 In the first part of the project, I was tasked with creating a scatter plot between my two chosen data variables: Income vs. Obesity. Each point in the scatter plot needed to represent a state and the state's abbreviations needed to appear in the circles. There is also tooltip attached to each circle. 
 
-![](https://github.com/erinmann12/D3-Challenge/blob/main/D3_data_journalism/images/obesityincomechart.PNG)
+![](https://github.com/erinmann12/D3-Challenge/blob/main/D3_data_journalism/images/staticchart_tooltip.png)
 
 You will need to launch a server in order to run the interactive visualization.
 
