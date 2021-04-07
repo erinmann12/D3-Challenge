@@ -28,11 +28,11 @@ var chartGroup = svg.append("g")
 var chosenXAxis = "obesity";
 
 // function used for updating x-scale var upon click on axis label
-function xScale(hairData, chosenXAxis) {
+function xScale(censusData, chosenXAxis) {
   // create scales
   var xLinearScale = d3.scaleLinear()
-    .domain([d3.min(hairData, d => d[chosenXAxis]) * 0.8,
-      d3.max(hairData, d => d[chosenXAxis]) * 1.2
+    .domain([d3.min(censusData, d => d[chosenXAxis]) * 0.8,
+      d3.max(censusData, d => d[chosenXAxis]) * 1.2
     ])
     .range([0, width]);
 
@@ -78,7 +78,7 @@ function updateToolTip(chosenXAxis, circlesGroup) {
     .attr("class", "tooltip")
     .offset([80, -60])
     .html(function(d) {
-      return (`${d.state}<br>${label} ${d[chosenXAxis]}`);
+      return (`<strong>${d.state}</strong><hr>${label} ${d[chosenXAxis]}<br>Income: $${d.income}`);
     });
 
   chartGroup.call(toolTip);
@@ -95,23 +95,23 @@ function updateToolTip(chosenXAxis, circlesGroup) {
 }
 
 // Retrieve data from the CSV file and execute everything below
-d3.csv("assets/data/data.csv").then(function(hairData, err) {
+d3.csv("assets/data/data.csv").then(function(censusData, err) {
   //console.log(hairData);
   if (err) throw err;
 
   // parse data
-  hairData.forEach(function(data) {
+  censusData.forEach(function(data) {
     data.obesity = +data.obesity;
     data.income = +data.income;
     data.healthcare = +data.healthcare;
   });
 
   // xLinearScale function above csv import
-  var xLinearScale = xScale(hairData, chosenXAxis);
+  var xLinearScale = xScale(censusData, chosenXAxis);
   
   // Create y scale function
   var yLinearScale = d3.scaleLinear()
-    .domain([0, d3.max(hairData, d => d.income)])
+    .domain([0, d3.max(censusData, d => d.income)])
     .range([height, 0]);
     
   // Create initial axis functions
@@ -130,7 +130,7 @@ d3.csv("assets/data/data.csv").then(function(hairData, err) {
 
   // append initial circles
   var circlesGroup = chartGroup.selectAll("circle")
-    .data(hairData)
+    .data(censusData)
     .enter()
     .append("circle")
     .attr("cx", d => xLinearScale(d[chosenXAxis]))
@@ -184,7 +184,7 @@ d3.csv("assets/data/data.csv").then(function(hairData, err) {
 
         // functions here found above csv import
         // updates x scale for new data
-        xLinearScale = xScale(hairData, chosenXAxis);
+        xLinearScale = xScale(censusData, chosenXAxis);
 
         // updates x axis with transition
         xAxis = renderAxes(xLinearScale, xAxis);
