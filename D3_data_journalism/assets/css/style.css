@@ -55,9 +55,9 @@ body {
   text-anchor: middle;
 }
 
-#hairmetal {
+/* #hairmetal {
   border-radius: 8px;
-}
+} */
 
 .chart::before {
   position: absolute;

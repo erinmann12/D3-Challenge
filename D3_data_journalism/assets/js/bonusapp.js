@@ -63,12 +63,11 @@ function renderCircles(circlesGroup, newXScale, chosenXAxis) {
 }
 
 //function to update state Group with a transition
-function renderStates(stateGroup, newXScale, yLinearScale, chosenXAxis, leftAxis) {
+function renderStates(stateGroup, newXScale, chosenXAxis) {
 
   stateGroup.transition()
     .duration(1000)
-    .attr("cx", d => newXScale(d[chosenXAxis]))
-    .attr("cy", d => yLinearScale(d.income));
+    .attr("cx", d => newXScale(d[chosenXAxis]));
 
     return stateGroup;
 }
@@ -88,7 +87,7 @@ function updateToolTip(chosenXAxis, circlesGroup) {
     .attr("class", "tooltip")
     .offset([80, -60])
     .html(function(d) {
-      return (`<strong>${d.state}</strong><hr>${label} ${d[chosenXAxis]}<br>Income: $${d.income}`);
+      return (`<strong>${d.state}</strong><hr>${label} ${d[chosenXAxis]}%<br>Income: $${d.income}`);
     });
 
   chartGroup.call(toolTip);
@@ -150,7 +149,7 @@ d3.csv("assets/data/data.csv").then(function(censusData, err) {
     .attr("opacity", ".8");
 
   //state abbreviations
-  var stateGroup = chartGroup.selectAll("null")
+  var stateGroup = chartGroup.selectAll(".states")
     .data(censusData)
     .enter()
     .append("text")
@@ -214,7 +213,9 @@ d3.csv("assets/data/data.csv").then(function(censusData, err) {
 
         // updates circles with new x values
         circlesGroup = renderCircles(circlesGroup, xLinearScale, chosenXAxis);
-        stateGroup = renderStates(stateGroup, newXScale, yLinearScale, chosenXAxis, leftAxis);
+
+        //update text with new x values
+        stateGroup = renderStates(stateGroup, xLinearScale, chosenXAxis);
 
         // updates tooltips with new info
         circlesGroup = updateToolTip(chosenXAxis, circlesGroup);
