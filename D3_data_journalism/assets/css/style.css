@@ -47,7 +47,7 @@ body {
 .axisText {
   font-family: sans-serif;
   font-weight: bold;
-  fill: blueviolet;
+  fill: rgb(73, 60, 85);
   text-anchor: middle;
 }
 

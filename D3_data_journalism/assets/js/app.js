@@ -91,7 +91,7 @@ d3.csv("assets/data/data.csv").then(function(censusData) {
     .attr("class", "tooltip")
     .offset([80, -60])
     .html(function(d) {
-      return (`<strong>${d.state}<strong><hr>Obesity: ${d.obesity}<br>Income: $${d.income}`);
+      return (`<strong>${d.state}<strong><hr>Obesity: ${d.obesity}%<br>Income: $${d.income}`);
     });
 
     // Step 7: Create tooltip in the chart
@@ -116,12 +116,12 @@ d3.csv("assets/data/data.csv").then(function(censusData) {
       .attr("x", 0 - (height / 2))
       .attr("dy", "1em")
       .attr("class", "axisText")
-      .text("Income");
+      .text("Household Income");
 
     chartGroup.append("text")
       .attr("transform", `translate(${width / 2}, ${height + margin.top + 30})`)
       .attr("class", "axisText")
-      .text("Obesity");
+      .text("Obesity (%)");
   }).catch(function(error) {
     console.log(error);
   });
