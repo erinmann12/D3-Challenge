@@ -96,7 +96,7 @@ function updateToolTip(chosenXAxis, circlesGroup) {
 
 // Retrieve data from the CSV file and execute everything below
 d3.csv("assets/data/data.csv").then(function(censusData, err) {
-  //console.log(hairData);
+  //console.log(censusData);
   if (err) throw err;
 
   // parse data
@@ -144,14 +144,14 @@ d3.csv("assets/data/data.csv").then(function(censusData, err) {
   var labelsGroup = chartGroup.append("g")
     .attr("transform", `translate(${width / 2}, ${height + 20})`);
   
-  var hairLengthLabel = labelsGroup.append("text")
+  var obesityLabel = labelsGroup.append("text")
     .attr("x", 0)
     .attr("y", 20)
     .attr("value", "obesity") // value to grab for event listener
     .classed("active", true)
     .text("Obesity");
   
-  var albumsLabel = labelsGroup.append("text")
+  var healthcareLabel = labelsGroup.append("text")
     .attr("x", 0)
     .attr("y", 40)
     .attr("value", "healthcare") // value to grab for event listener
@@ -197,18 +197,18 @@ d3.csv("assets/data/data.csv").then(function(censusData, err) {
 
         // changes classes to change bold text
         if (chosenXAxis === "healthcare") {
-          albumsLabel
+          healthcareLabel
             .classed("active", true)
             .classed("inactive", false);
-          hairLengthLabel
+          obesityLabel
             .classed("active", false)
             .classed("inactive", true);
         }
         else {
-          albumsLabel
+          healthcareLabel
             .classed("active", false)
             .classed("inactive", true);
-          hairLengthLabel
+          obesityLabel
             .classed("active", true)
             .classed("inactive", false);
         }
