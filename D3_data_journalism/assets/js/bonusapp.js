@@ -139,6 +139,19 @@ d3.csv("assets/data/data.csv").then(function(censusData, err) {
     .attr("fill", "plum")
     .attr("opacity", ".8");
 
+  //state abbreviations
+  var stateGroup = chartGroup.selectAll("null")
+    .data(censusData)
+    .enter()
+    .append("text")
+    //append text of state abbreviations
+    .text(d => d.abbr)
+    .attr("dx", d => xLinearScale(d[chosenXAxis]))
+    .attr("dy", d => yLinearScale(d.income))
+    //create class attribute .states with centered text etc.
+    .attr("class","states")
+    .attr("alignment-baseline", "central")
+    ;
   
   // Create group for two x-axis labels
   var labelsGroup = chartGroup.append("g")
