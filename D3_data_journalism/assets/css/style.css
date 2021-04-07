@@ -68,14 +68,9 @@ body {
   width: 400px;
   height: 300px;
   content: " ";
-  background-image: url("maxresdefault.jpg");
-  background-repeat: no-repeat;
-  background-position: 50% 0;
-  background-size: cover;
-  opacity: 0.3;
 }
 
-.tooltip {
+/* .tooltip {
   position: absolute;
   width: 135px;
   height: 60px;
@@ -87,14 +82,14 @@ body {
   background: #551aaf;
   border: 0;
   border-radius: 10px;
-}
+} */
 
-.axis-text {
+/* .axis-text {
   font-family: sans-serif;
   font-weight: bold;
   fill: #551aaf;
   text-anchor: middle;
-}
+} */
 
 .active {
   font-weight: bold;

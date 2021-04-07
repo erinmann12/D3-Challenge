@@ -1,5 +1,4 @@
-console.log("I am reading");
-
+//set up graph boundaries
 var svgWidth = 960;
 var svgHeight = 500;
 
@@ -26,7 +25,7 @@ var chartGroup = svg.append("g")
   .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
 // Initial Params
-var chosenXAxis = "hair_length";
+var chosenXAxis = "obesity";
 
 // function used for updating x-scale var upon click on axis label
 function xScale(hairData, chosenXAxis) {
@@ -68,24 +67,24 @@ function updateToolTip(chosenXAxis, circlesGroup) {
 
   var label;
 
-  if (chosenXAxis === "hair_length") {
-    label = "Hair Length:";
+  if (chosenXAxis === "obesity") {
+    label = "Obesity:";
   }
   else {
-    label = "# of Albums:";
+    label = "Healthcare:";
   }
 
   var toolTip = d3.tip()
     .attr("class", "tooltip")
     .offset([80, -60])
     .html(function(d) {
-      return (`${d.rockband}<br>${label} ${d[chosenXAxis]}`);
+      return (`${d.state}<br>${label} ${d[chosenXAxis]}`);
     });
 
-  circlesGroup.call(toolTip);
+  chartGroup.call(toolTip);
 
   circlesGroup.on("mouseover", function(data) {
-    toolTip.show(data);
+    toolTip.show(data,this);
   })
     // onmouseout event
     .on("mouseout", function(data, index) {
@@ -137,8 +136,9 @@ d3.csv("assets/data/data.csv").then(function(hairData, err) {
     .attr("cx", d => xLinearScale(d[chosenXAxis]))
     .attr("cy", d => yLinearScale(d.income))
     .attr("r", 20)
-    .attr("fill", "pink")
-    .attr("opacity", ".5");
+    .attr("fill", "plum")
+    .attr("opacity", ".8");
+
   
   // Create group for two x-axis labels
   var labelsGroup = chartGroup.append("g")
