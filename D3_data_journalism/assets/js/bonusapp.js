@@ -62,6 +62,16 @@ function renderCircles(circlesGroup, newXScale, chosenXAxis) {
   return circlesGroup;
 }
 
+//function to update state Group with a transition
+function renderStates(stateGroup, newXScale, yLinearScale, chosenXAxis, leftAxis) {
+
+  stateGroup.transition()
+    .duration(1000)
+    .attr("cx", d => newXScale(d[chosenXAxis]))
+    .attr("cy", d => yLinearScale(d.income));
+
+    return stateGroup;
+}
 // function used for updating circles group with new tooltip
 function updateToolTip(chosenXAxis, circlesGroup) {
 
@@ -204,6 +214,7 @@ d3.csv("assets/data/data.csv").then(function(censusData, err) {
 
         // updates circles with new x values
         circlesGroup = renderCircles(circlesGroup, xLinearScale, chosenXAxis);
+        stateGroup = renderStates(stateGroup, newXScale, yLinearScale, chosenXAxis, leftAxis);
 
         // updates tooltips with new info
         circlesGroup = updateToolTip(chosenXAxis, circlesGroup);
