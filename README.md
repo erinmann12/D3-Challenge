@@ -17,6 +17,10 @@ In the first part of the project, I was tasked with creating a scatter plot betw
 
 ![](https://github.com/erinmann12/D3-Challenge/blob/main/D3_data_journalism/images/staticchart_tooltip.png)
 
+In the second part of the project,
+
+You can switch between the two graphs by commenting/uncommenting out app.js and bonusapp.js. 
+
 You will need to launch a server in order to run the interactive visualization.
 
 --------------------------------------------------------------------------------------------------------------

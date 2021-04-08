@@ -67,7 +67,7 @@ function renderStates(stateGroup, newXScale, chosenXAxis) {
 
   stateGroup.transition()
     .duration(1000)
-    .attr("cx", d => newXScale(d[chosenXAxis]));
+    .attr("dx", d => newXScale(d[chosenXAxis]));
 
     return stateGroup;
 }

@@ -47,17 +47,14 @@ body {
 .axisText {
   font-family: sans-serif;
   font-weight: bold;
-  fill: rgb(73, 60, 85);
+  fill: black;
   text-anchor: middle;
 }
+
 
 .states {
   text-anchor: middle;
 }
-
-/* #hairmetal {
-  border-radius: 8px;
-} */
 
 .chart::before {
   position: absolute;
@@ -69,27 +66,6 @@ body {
   height: 300px;
   content: " ";
 }
-
-/* .tooltip {
-  position: absolute;
-  width: 135px;
-  height: 60px;
-  padding: 2px;
-  padding-top: 8px;
-  font: 12px sans-serif;
-  color: white;
-  text-align: center;
-  background: #551aaf;
-  border: 0;
-  border-radius: 10px;
-} */
-
-/* .axis-text {
-  font-family: sans-serif;
-  font-weight: bold;
-  fill: #551aaf;
-  text-anchor: middle;
-} */
 
 .active {
   font-weight: bold;
