@@ -17,7 +17,7 @@ In the first part of the project, I was tasked with creating a scatter plot betw
 
 ![](https://github.com/erinmann12/D3-Challenge/blob/main/D3_data_journalism/images/staticchart_tooltip.png)
 
-In the second part of the project, I used D3 transitions to make a more interactive data visualization. I added another axis (smokes) and animated the transitions for the circle locations.
+In the second part of the project, I used D3 transitions to make a more interactive data visualization. I added another x axis (smokes) and y axis (poverty) and animated the transitions for the circle locations.
 
 ![](https://github.com/erinmann12/D3-Challenge/blob/main/D3_data_journalism/images/bonustransition.gif)
 
