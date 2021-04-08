@@ -45,7 +45,7 @@ function renderAxes(newXScale, xAxis) {
   var bottomAxis = d3.axisBottom(newXScale);
 
   xAxis.transition()
-    .duration(1000)
+    .duration(3000)
     .call(bottomAxis);
 
   return xAxis;
@@ -56,7 +56,7 @@ function renderAxes(newXScale, xAxis) {
 function renderCircles(circlesGroup, newXScale, chosenXAxis) {
 
   circlesGroup.transition()
-    .duration(1000)
+    .duration(3000)
     .attr("cx", d => newXScale(d[chosenXAxis]));
 
   return circlesGroup;
