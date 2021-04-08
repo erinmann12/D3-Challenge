@@ -80,7 +80,7 @@ function updateToolTip(chosenXAxis, circlesGroup) {
     label = "Obesity:";
   }
   else {
-    label = "Healthcare:";
+    label = "Smokes:";
   }
 
   var toolTip = d3.tip()
@@ -112,7 +112,7 @@ d3.csv("assets/data/data.csv").then(function(censusData, err) {
   censusData.forEach(function(data) {
     data.obesity = +data.obesity;
     data.income = +data.income;
-    data.healthcare = +data.healthcare;
+    data.smokes = +data.smokes;
   });
 
   // xLinearScale function above csv import
@@ -173,12 +173,12 @@ d3.csv("assets/data/data.csv").then(function(censusData, err) {
     .classed("active", true)
     .text("Obesity (%)");
   
-  var healthcareLabel = labelsGroup.append("text")
+  var smokingLabel = labelsGroup.append("text")
     .attr("x", 0)
     .attr("y", 40)
-    .attr("value", "healthcare") // value to grab for event listener
+    .attr("value", "smokes") // value to grab for event listener
     .classed("inactive", true)
-    .text("Healthcare (%)");
+    .text("Smokes (%)");
   
   // append y axis
   chartGroup.append("text")
@@ -221,8 +221,8 @@ d3.csv("assets/data/data.csv").then(function(censusData, err) {
         circlesGroup = updateToolTip(chosenXAxis, circlesGroup);
 
         // changes classes to change bold text
-        if (chosenXAxis === "healthcare") {
-          healthcareLabel
+        if (chosenXAxis === "smokes") {
+          smokingLabel
             .classed("active", true)
             .classed("inactive", false);
           obesityLabel
@@ -230,7 +230,7 @@ d3.csv("assets/data/data.csv").then(function(censusData, err) {
             .classed("inactive", true);
         }
         else {
-          healthcareLabel
+          smokingLabel
             .classed("active", false)
             .classed("inactive", true);
           obesityLabel
